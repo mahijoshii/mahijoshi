@@ -1086,14 +1086,17 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!robot || !floater || !bubble || !bubbleText || !badge || !body) return;
 
   const facts = [
-    "Fun fact: Mahi did competitive gymnastics — so yes, the discipline and chaos tolerance started early.",
+    "Fun fact: Mahi did competitive gymnastics, so yes, the discipline and chaos tolerance started early.",
     "She trained in ballet for 14 years, which might explain the mix of precision, patience, and strong posture.",
-    "She loves cooking and baking, so building things doesn't stop at code — sometimes it ends in dessert.",
+    "Mahi keeps a Sudoku book with her to keep her mind stimulated!",
+    "She loves cooking and baking, so building things doesn't stop at code... sometimes it ends in dessert.",
+    "She loves Harry Potter! She's read the books, seen the movies, and been to Universal!",
     "She's into running and wants to run a marathon soon.",
+    "She sometimes builds things just to see if she can.",
     "Mahi has been to 15+ countries and genuinely loves traveling.",
-    "When she started university, she won a $120K scholarship — kind of iconic.",
-    "She loves building things, whether that's robots, full-stack apps, or ideas that somehow become real.",
-    "Tiny summary: equal parts engineer, creator, traveler, and menace with a whisk."
+    "When she started university, she won a $120K scholarship :) kind of iconic.",
+    "Mahi has a habit of turning small ideas into full projects.",
+    "She loves building things, whether that's robots, full-stack apps, or ideas that somehow become real."
   ];
 
   let factIndex = 0;
@@ -1180,30 +1183,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }, 60000);
 
   attentionTimer = setInterval(maybeGrabAttention, 5000);
-
-  const positions = [
-    { right: 24, bottom: 24 },
-    { right: 32, bottom: 84 },
-    { right: 24, bottom: 140 },
-    { right: 20, bottom: 92 }
-  ];
-
-  function updateFloatPosition() {
-    const scrollY = window.scrollY || window.pageYOffset;
-    const docHeight = Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight,
-      window.innerHeight
-    );
-    const progress = docHeight > window.innerHeight ? scrollY / (docHeight - window.innerHeight) : 0;
-    const idx = Math.min(positions.length - 1, Math.floor(progress * positions.length));
-    robot.style.right = positions[idx].right + 'px';
-    robot.style.bottom = positions[idx].bottom + 'px';
-  }
-
-  updateFloatPosition();
-  window.addEventListener('scroll', updateFloatPosition, { passive: true });
-  window.addEventListener('resize', updateFloatPosition);
 })();
 
 </script>
@@ -1212,7 +1191,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <div id="robot-companion" aria-live="polite">
   <div id="robot-bubble" class="show">
     <div class="robot-bubble-label">mini mahi-bot</div>
-    <div class="robot-bubble-text" id="robot-bubble-text">hi! i\'m your tiny site guide ✨ click me for fun facts about mahi.</div>
+    <div class="robot-bubble-text" id="robot-bubble-text">hi! i'm your tiny site guide ✨ click me for fun facts about mahi.</div>
     <div class="robot-bubble-hint">this intro will disappear in a minute.</div>
   </div>
   <div class="robot-shadow"></div>
