@@ -123,12 +123,14 @@ canvas#gc{display:block;width:100%}
 
 /* ── PROJECTS ── */
 .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
-.proj-card{background:var(--soft);border:1px solid rgba(201,123,110,0.15);border-radius:20px;padding:1.6rem;cursor:default;transition:all 0.25s}
+.proj-card{background:var(--soft);border:1px solid rgba(201,123,110,0.15);border-radius:20px;padding:1.6rem;cursor:pointer;transition:all 0.25s;text-decoration:none;display:block;color:inherit}
 .proj-card:hover{transform:translateY(-4px);border-color:rgba(201,123,110,0.35);box-shadow:0 14px 36px rgba(201,123,110,0.1)}
 .proj-icon{font-size:1.5rem;margin-bottom:0.8rem}
 .proj-name{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--dark);margin-bottom:0.4rem}
 .proj-desc{font-size:0.83rem;line-height:1.65;color:var(--mid)}
 .proj-metric{display:inline-block;margin-top:0.7rem;font-size:0.75rem;font-weight:500;color:var(--accent);background:rgba(201,123,110,0.1);border:1px solid rgba(201,123,110,0.2);padding:0.22rem 0.65rem;border-radius:100px}
+.proj-github{display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.75rem;margin-left:0.4rem;font-size:0.72rem;font-weight:500;color:var(--mid);background:rgba(201,123,110,0.06);border:1px solid rgba(201,123,110,0.15);padding:0.22rem 0.65rem;border-radius:100px;transition:color 0.2s,border-color 0.2s,background 0.2s}
+a.proj-card:hover .proj-github{color:var(--accent);border-color:rgba(201,123,110,0.35);background:rgba(201,123,110,0.12)}
 
 /* ── CONTACT ── */
 .contact-section{padding:3rem 3rem 5rem;max-width:1100px;margin:0 auto}
@@ -362,21 +364,21 @@ footer{text-align:center;padding:1.5rem;font-size:0.75rem;color:rgba(122,85,72,0
   <div class="sec-label">✦ projects</div>
   <h2 class="sec-title">Things I've<br/>built & shipped.</h2>
   <div class="proj-grid">
-    <div class="proj-card">
+    <a class="proj-card" href="https://github.com/rishaband/NeuroGuard" target="_blank" rel="noopener noreferrer">
       <div class="proj-icon">🧠</div>
       <div class="proj-name">NeuroGuard</div>
       <div class="proj-desc">Real-time fall detection for at-risk patients using OpenCV + MediaPipe pose estimation + unsupervised ML. End-to-end Python event pipeline with React dashboard and live clinician alerts. Built at Hack the North.</div>
-      <div class="proj-metric">96.9% detection accuracy</div>
+      <div class="proj-metric">96.9% detection accuracy</div><span class="proj-github">⌥ view on github →</span>
       <div class="exp-tags" style="margin-top:0.6rem"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">React Native</span></div>
-    </div>
-    <div class="proj-card">
+    </a>
+    <a class="proj-card" href="https://github.com/mahijoshii/fundr" target="_blank" rel="noopener noreferrer">
       <div class="proj-icon">💡</div>
       <div class="proj-name">Fundr</div>
       <div class="proj-desc">Semantic grant-matching platform with ~0.80 cosine similarity across hundreds of records. Swipe UI, Snowflake data integration, FastAPI backend, CI/CD. Shipped in 24 hours at Hack the Valley.</div>
-      <div class="proj-metric">~0.80 avg top-5 similarity</div>
+      <div class="proj-metric">~0.80 avg top-5 similarity</div><span class="proj-github">⌥ view on github →</span>
       <div class="exp-tags" style="margin-top:0.6rem"><span class="tag">TypeScript</span><span class="tag">FastAPI</span><span class="tag">Gemini API</span></div>
-    </div>
-    <div class="proj-card">
+    </a>
+    <div class="proj-card" style="cursor:default">
       <div class="proj-icon">⚡</div>
       <div class="proj-name">Electric Skateboard</div>
       <div class="proj-desc">Led a 15-member cross-functional team across mechanical, electrical, and firmware from design through system validation. C++ firmware on STM32 with &lt;50ms real-time LED response on 20+ test runs.</div>
@@ -390,6 +392,13 @@ footer{text-align:center;padding:1.5rem;font-size:0.75rem;color:rgba(122,85,72,0
       <div class="proj-metric">&lt;100ms control latency</div>
       <div class="exp-tags" style="margin-top:0.6rem"><span class="tag">ROS 2</span><span class="tag">Python</span><span class="tag">C++</span></div>
     </div>
+    <a class="proj-card" href="https://github.com/mahijoshii/pixel" target="_blank" rel="noopener noreferrer">
+      <div class="proj-icon">🤖</div>
+      <div class="proj-name">Pixel — Autonomous Robot</div>
+      <div class="proj-desc">Differential-drive robot on STM32 Nucleo-F401RE that autonomously navigates using HC-SR04 ultrasonic sensing and PWM-based motor control via L298N driver. Modular embedded C firmware with real-time obstacle avoidance.</div>
+      <div class="proj-metric">&lt;100ms real-time control</div><span class="proj-github">⌥ view on github →</span>
+      <div class="exp-tags" style="margin-top:0.6rem"><span class="tag">Embedded C</span><span class="tag">STM32</span><span class="tag">PWM</span><span class="tag">Robotics</span></div>
+    </a>
   </div>
 </div>
 
