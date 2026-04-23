@@ -168,6 +168,323 @@ footer{text-align:center;padding:1.5rem;font-size:0.75rem;color:rgba(122,85,72,0
   gap: 1rem;
 }
 
+
+/* ── FLOATING ROBOT ── */
+:root{
+  --robot-pink:#F4A6E0;
+  --robot-purple:#B78DFF;
+  --robot-deep:#8E63E6;
+  --robot-shadow:rgba(183,141,255,0.28);
+}
+#robot-companion{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  z-index:1200;
+  width:96px;
+  height:120px;
+  pointer-events:none;
+}
+#robot-float{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  animation:robotBob 3.6s ease-in-out infinite;
+  transition:transform 0.35s ease;
+}
+#robot-float.attention{
+  animation:robotJump 0.9s ease 3;
+}
+#robot-body{
+  position:relative;
+  width:82px;
+  height:104px;
+  pointer-events:auto;
+  cursor:pointer;
+  user-select:none;
+}
+#robot-badge{
+  position:absolute;
+  top:-10px;
+  right:-2px;
+  min-width:28px;
+  height:28px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:linear-gradient(135deg,var(--robot-pink),#ffd6f6);
+  color:#6e2cb8;
+  font-size:0.78rem;
+  font-weight:700;
+  box-shadow:0 8px 18px rgba(244,166,224,0.35);
+  opacity:0;
+  transform:scale(0.75);
+  transition:all 0.28s ease;
+}
+#robot-badge.show{
+  opacity:1;
+  transform:scale(1);
+}
+.robot-shadow{
+  position:absolute;
+  left:50%;
+  bottom:2px;
+  transform:translateX(-50%);
+  width:54px;
+  height:12px;
+  border-radius:50%;
+  background:var(--robot-shadow);
+  filter:blur(6px);
+}
+.robot-head{
+  position:absolute;
+  top:2px;
+  left:50%;
+  transform:translateX(-50%);
+  width:58px;
+  height:44px;
+  border-radius:18px;
+  background:linear-gradient(145deg,#ffd6fb,var(--robot-pink));
+  border:2px solid rgba(142,99,230,0.3);
+  box-shadow:0 10px 24px rgba(183,141,255,0.20);
+}
+.robot-head::before,
+.robot-head::after{
+  content:"";
+  position:absolute;
+  top:-10px;
+  width:5px;
+  height:13px;
+  border-radius:999px;
+  background:linear-gradient(180deg,var(--robot-purple),#ffd1f6);
+}
+.robot-head::before{left:15px; transform:rotate(-12deg);}
+.robot-head::after{right:15px; transform:rotate(12deg);}
+.robot-head .tip{
+  position:absolute;
+  top:-16px;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--robot-purple),#ffc1f0);
+  box-shadow:0 0 0 3px rgba(255,255,255,0.35);
+}
+.robot-head .tip.left{left:10px;}
+.robot-head .tip.right{right:10px;}
+.robot-face{
+  position:absolute;
+  inset:0;
+}
+.robot-eye{
+  position:absolute;
+  top:16px;
+  width:10px;
+  height:14px;
+  border-radius:999px;
+  background:#6f47d6;
+  box-shadow:0 0 10px rgba(111,71,214,0.22);
+  transition:transform 0.2s ease, height 0.2s ease;
+}
+.robot-eye.left{left:15px;}
+.robot-eye.right{right:15px;}
+.robot-cheek{
+  position:absolute;
+  top:27px;
+  width:10px;
+  height:6px;
+  border-radius:999px;
+  background:rgba(255,150,210,0.55);
+}
+.robot-cheek.left{left:10px;}
+.robot-cheek.right{right:10px;}
+.robot-mouth{
+  position:absolute;
+  left:50%;
+  bottom:10px;
+  width:16px;
+  height:8px;
+  transform:translateX(-50%);
+  border-bottom:3px solid #7b4bdf;
+  border-radius:0 0 14px 14px;
+}
+.robot-highlight{
+  position:absolute;
+  top:7px;
+  left:9px;
+  width:18px;
+  height:8px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.42);
+  transform:rotate(-12deg);
+}
+.robot-ear{
+  position:absolute;
+  top:14px;
+  width:8px;
+  height:17px;
+  border-radius:999px;
+  background:linear-gradient(180deg,#f8c5f0,#bf94ff);
+  box-shadow:0 3px 8px rgba(183,141,255,0.16);
+}
+.robot-ear.left{left:-5px;}
+.robot-ear.right{right:-5px;}
+.robot-eye::after{
+  content:"";
+  position:absolute;
+  top:2px;
+  left:2px;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.7);
+}
+.robot-hand{
+  position:absolute;
+  bottom:-2px;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#cda6ff;
+}
+.robot-hand.left{left:0;}
+.robot-hand.right{right:0;}
+.robot-torso{
+  position:absolute;
+  top:41px;
+  left:50%;
+  transform:translateX(-50%);
+  width:64px;
+  height:42px;
+  border-radius:16px;
+  background:linear-gradient(145deg,#fff6fe,#eed9ff);
+  border:2px solid rgba(142,99,230,0.18);
+  box-shadow:0 10px 24px rgba(183,141,255,0.18);
+}
+.robot-heart{
+  position:absolute;
+  left:50%;
+  top:11px;
+  transform:translateX(-50%);
+  font-size:0.95rem;
+  filter:drop-shadow(0 2px 4px rgba(183,141,255,0.22));
+}
+.robot-arm{
+  position:absolute;
+  top:49px;
+  width:14px;
+  height:30px;
+  border-radius:999px;
+  background:linear-gradient(180deg,#f8c5f0,#cda6ff);
+  transform-origin:top center;
+}
+.robot-arm.left{left:4px; transform:rotate(22deg);}
+.robot-arm.right{right:4px; transform:rotate(-22deg);}
+#robot-float.wave .robot-arm.right{
+  animation:robotWave 0.8s ease-in-out 3;
+}
+.robot-leg{
+  position:absolute;
+  bottom:6px;
+  width:12px;
+  height:27px;
+  border-radius:999px;
+  background:linear-gradient(180deg,#d9b5ff,#a97eff);
+}
+.robot-leg.left{left:24px;}
+.robot-leg.right{right:24px;}
+.robot-foot{
+  position:absolute;
+  bottom:0;
+  width:18px;
+  height:8px;
+  border-radius:999px;
+  background:#9c72ee;
+}
+.robot-foot.left{left:21px;}
+.robot-foot.right{right:21px;}
+
+#robot-bubble{
+  position:absolute;
+  right:100px;
+  bottom:46px;
+  width:min(300px, calc(100vw - 150px));
+  background:rgba(255,250,255,0.98);
+  color:var(--dark);
+  border:1px solid rgba(183,141,255,0.25);
+  border-radius:18px;
+  box-shadow:0 20px 38px rgba(144,108,220,0.18);
+  padding:0.95rem 1rem;
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(10px) scale(0.96);
+  transition:all 0.28s ease;
+}
+#robot-bubble.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+#robot-bubble::after{
+  content:"";
+  position:absolute;
+  right:-8px;
+  bottom:22px;
+  width:16px;
+  height:16px;
+  background:rgba(255,250,255,0.98);
+  border-right:1px solid rgba(183,141,255,0.25);
+  border-bottom:1px solid rgba(183,141,255,0.25);
+  transform:rotate(-45deg);
+}
+.robot-bubble-label{
+  font-size:0.66rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:#9a6fe6;
+  margin-bottom:0.3rem;
+  font-weight:700;
+}
+.robot-bubble-text{
+  font-size:0.84rem;
+  line-height:1.6;
+  color:#61485e;
+}
+.robot-bubble-hint{
+  margin-top:0.5rem;
+  font-size:0.72rem;
+  color:#a07bbd;
+}
+@keyframes robotBob{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-9px)}
+}
+@keyframes robotJump{
+  0%,100%{transform:translateY(0)}
+  20%{transform:translateY(-4px)}
+  45%{transform:translateY(-18px)}
+  65%{transform:translateY(0)}
+  80%{transform:translateY(-7px)}
+}
+@keyframes robotWave{
+  0%,100%{transform:rotate(-22deg)}
+  50%{transform:rotate(-52deg)}
+}
+@media (max-width: 768px){
+  #robot-companion{
+    right:14px;
+    bottom:14px;
+    transform:scale(0.9);
+    transform-origin:bottom right;
+  }
+  #robot-bubble{
+    width:min(250px, calc(100vw - 115px));
+    right:86px;
+    bottom:42px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -756,6 +1073,176 @@ canvas.addEventListener('touchmove', e => {
   e.preventDefault();
 }, { passive: false });
 canvas.addEventListener('touchend', () => { keys[' '] = true; setTimeout(() => keys[' '] = false, 100); }, { passive: false });
+
+
+/* ── FLOATING ROBOT COMPANION ── */
+document.addEventListener('DOMContentLoaded', function () {
+  const robot = document.getElementById('robot-companion');
+  const floater = document.getElementById('robot-float');
+  const bubble = document.getElementById('robot-bubble');
+  const bubbleText = document.getElementById('robot-bubble-text');
+  const badge = document.getElementById('robot-badge');
+  const body = document.getElementById('robot-body');
+  if (!robot || !floater || !bubble || !bubbleText || !badge || !body) return;
+
+  const facts = [
+    "Fun fact: Mahi did competitive gymnastics — so yes, the discipline and chaos tolerance started early.",
+    "She trained in ballet for 14 years, which might explain the mix of precision, patience, and strong posture.",
+    "She loves cooking and baking, so building things doesn't stop at code — sometimes it ends in dessert.",
+    "She's into running and wants to run a marathon soon.",
+    "Mahi has been to 15+ countries and genuinely loves traveling.",
+    "When she started university, she won a $120K scholarship — kind of iconic.",
+    "She loves building things, whether that's robots, full-stack apps, or ideas that somehow become real.",
+    "Tiny summary: equal parts engineer, creator, traveler, and menace with a whisk."
+  ];
+
+  let factIndex = 0;
+  let bubbleTimer = null;
+  let introTimer = null;
+  let attentionTimer = null;
+  let lastClick = Date.now();
+  let visible = true;
+  let introActive = true;
+
+  function hideBubble() {
+    bubble.classList.remove('show');
+    visible = false;
+  }
+
+  function showBubble(text, autoHideMs = 6500, hintText = '') {
+    bubbleText.textContent = text;
+    const hint = bubble.querySelector('.robot-bubble-hint');
+    if (hint) {
+      hint.textContent = hintText;
+      hint.style.display = hintText ? 'block' : 'none';
+    }
+    bubble.classList.add('show');
+    visible = true;
+    if (bubbleTimer) clearTimeout(bubbleTimer);
+    if (autoHideMs > 0) {
+      bubbleTimer = setTimeout(() => {
+        hideBubble();
+      }, autoHideMs);
+    }
+  }
+
+  function nextFact() {
+    const text = facts[factIndex % facts.length];
+    factIndex += 1;
+    return text;
+  }
+
+  function celebrateAttention() {
+    badge.classList.add('show');
+    floater.classList.add('attention');
+    floater.classList.add('wave');
+    setTimeout(() => badge.classList.remove('show'), 2200);
+    setTimeout(() => {
+      floater.classList.remove('attention');
+      floater.classList.remove('wave');
+    }, 2500);
+  }
+
+  function maybeGrabAttention() {
+    const idleFor = Date.now() - lastClick;
+    if (idleFor > 18000 && !visible) {
+      celebrateAttention();
+    }
+  }
+
+  function onActivate() {
+    lastClick = Date.now();
+    body.blur();
+
+    if (introActive) {
+      introActive = false;
+      if (introTimer) clearTimeout(introTimer);
+      if (bubbleTimer) clearTimeout(bubbleTimer);
+    }
+
+    showBubble(nextFact(), 7000, '');
+    floater.classList.add('wave');
+    setTimeout(() => floater.classList.remove('wave'), 2400);
+    badge.classList.remove('show');
+  }
+
+  body.addEventListener('click', onActivate);
+  body.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onActivate();
+    }
+  });
+
+  introTimer = setTimeout(() => {
+    introActive = false;
+    hideBubble();
+  }, 60000);
+
+  attentionTimer = setInterval(maybeGrabAttention, 5000);
+
+  const positions = [
+    { right: 24, bottom: 24 },
+    { right: 32, bottom: 84 },
+    { right: 24, bottom: 140 },
+    { right: 20, bottom: 92 }
+  ];
+
+  function updateFloatPosition() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const docHeight = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight,
+      window.innerHeight
+    );
+    const progress = docHeight > window.innerHeight ? scrollY / (docHeight - window.innerHeight) : 0;
+    const idx = Math.min(positions.length - 1, Math.floor(progress * positions.length));
+    robot.style.right = positions[idx].right + 'px';
+    robot.style.bottom = positions[idx].bottom + 'px';
+  }
+
+  updateFloatPosition();
+  window.addEventListener('scroll', updateFloatPosition, { passive: true });
+  window.addEventListener('resize', updateFloatPosition);
+})();
+
 </script>
+
+<!-- ── FLOATING ROBOT COMPANION ── -->
+<div id="robot-companion" aria-live="polite">
+  <div id="robot-bubble" class="show">
+    <div class="robot-bubble-label">mini mahi-bot</div>
+    <div class="robot-bubble-text" id="robot-bubble-text">hi! i\'m your tiny site guide ✨ click me for fun facts about mahi.</div>
+    <div class="robot-bubble-hint">this intro will disappear in a minute.</div>
+  </div>
+  <div class="robot-shadow"></div>
+  <div id="robot-float">
+    <div id="robot-body" role="button" tabindex="0" aria-label="Open fun facts about Mahi">
+      <div id="robot-badge">!!</div>
+      <div class="robot-head">
+        <div class="tip left"></div>
+        <div class="tip right"></div>
+        <div class="robot-ear left"></div>
+        <div class="robot-ear right"></div>
+        <div class="robot-highlight"></div>
+        <div class="robot-face">
+          <div class="robot-eye left"></div>
+          <div class="robot-eye right"></div>
+          <div class="robot-cheek left"></div>
+          <div class="robot-cheek right"></div>
+          <div class="robot-mouth"></div>
+        </div>
+      </div>
+      <div class="robot-arm left"><div class="robot-hand left"></div></div>
+      <div class="robot-arm right"><div class="robot-hand right"></div></div>
+      <div class="robot-torso"><div class="robot-heart">💜</div></div>
+      <div class="robot-leg left"></div>
+      <div class="robot-leg right"></div>
+      <div class="robot-foot left"></div>
+      <div class="robot-foot right"></div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
